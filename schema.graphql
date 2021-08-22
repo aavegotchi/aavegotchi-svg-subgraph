@@ -1,5 +1,4 @@
-type ExampleEntity @entity {
+type Aavegotchi @entity {
   id: ID!
-  count: BigInt!
-  _tokenId: BigInt! # uint256
+  svg: String
 }
