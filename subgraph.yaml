@@ -15,67 +15,65 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - ClaimAavegotchi
-        - LockAavegotchi
-        - SetAavegotchiName
-        - SetBatchId
-        - SpendSkillpoints
-        - UnLockAavegotchi
-        - AddedAavegotchiBatch
-        - AddedItemsBatch
-        - WithdrawnBatch
-        - WithdrawnItems
-        - DecreaseStake
-        - ExperienceTransfer
-        - IncreaseStake
-        - AddCollateralType
-        - AddItemType
-        - AddWearableSet
-        - CreateHaunt
-        - DaoTransferred
-        - DaoTreasuryTransferred
-        - GameManagerTransferred
-        - GrantExperience
-        - ItemTypeMaxQuantity
-        - UpdateCollateralModifiers
-        - UpdateWearableSet
-        - ChangedListingFee
-        - ERC1155ExecutedListing
-        - ERC1155ListingAdd
-        - ERC1155ListingCancelled
-        - ERC721ExecutedListing
-        - ERC721ListingAdd
+        # - LockAavegotchi
+        # - SetAavegotchiName
+        # - SetBatchId
+        # - SpendSkillpoints
+        # - UnLockAavegotchi
+        # - AddedAavegotchiBatch
+        # - AddedItemsBatch
+        # - WithdrawnBatch
+        # - WithdrawnItems
+        # - DecreaseStake
+        # - ExperienceTransfer
+        # - IncreaseStake
+        # - AddCollateralType
+        # - AddItemType
+        # - AddWearableSet
+        # - CreateHaunt
+        # - DaoTransferred
+        # - DaoTreasuryTransferred
+        # - GameManagerTransferred
+        # - GrantExperience
+        # - ItemTypeMaxQuantity
+        # - UpdateCollateralModifiers
+        # - UpdateWearableSet
+        # - ChangedListingFee
+        # - ERC1155ExecutedListing
+        # - ERC1155ListingAdd
+        # - ERC1155ListingCancelled
+        # - ERC721ExecutedListing
+        # - ERC721ListingAdd
         - EquipWearables
-        - TransferToParent
-        - UseConsumables
-        - MetaTransactionExecuted
-        - BuyPortals
-        - Xingyun
-        - OpenPortals
-        - PortalOpened
-        - VrfRandomNumber
-        - MigrateVouchers
-        - AavegotchiInteract
-        - ERC1155ListingCancelled1
-        - ERC1155ListingRemoved
-        - UpdateERC1155Listing
-        - ERC721ListingCancelled
-        - ERC721ListingRemoved
-        - StoreSvg
-        - UpdateSvg
-        - DiamondCut
-        - OwnershipTransferred
-        - ApprovalForAll
-        - TransferBatch
-        - TransferFromParent
-        - TransferSingle
-        - TransferToParent1
-        - URI
-        - Approval
-        - ApprovalForAll1
-        - Transfer
-        - ItemModifiersSet
-        - WearableSlotPositionsSet
-        - MintPortals
+        # - TransferToParent
+        # - UseConsumables
+        # - MetaTransactionExecuted
+        # - BuyPortals
+        # - Xingyun
+        # - OpenPortals
+        # - PortalOpened
+        # - VrfRandomNumber
+        # - MigrateVouchers
+        # - AavegotchiInteract
+        # - UpdateERC1155Listing
+        # - ERC721ListingCancelled
+        # - ERC721ListingRemoved
+        # - StoreSvg
+        # - UpdateSvg
+        # - DiamondCut
+        # - OwnershipTransferred
+        # - ApprovalForAll
+        # - TransferBatch
+        # - TransferFromParent
+        # - TransferSingle
+        # - TransferToParent1
+        # - URI
+        # - Approval
+        # - ApprovalForAll1
+        # - Transfer
+        # - ItemModifiersSet
+        # - WearableSlotPositionsSet
+        # - MintPortals
       abis:
         - name: Contract
           file: ./abis/Contract.json
