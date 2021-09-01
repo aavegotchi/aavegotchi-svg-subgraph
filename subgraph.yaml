@@ -50,9 +50,6 @@ dataSources:
         - MetaTransactionExecuted
         - BuyPortals
         - Xingyun
-        - PurchaseItemsWithGhst
-        - PurchaseItemsWithVouchers
-        - PurchaseTransferItemsWithGhst
         - OpenPortals
         - PortalOpened
         - VrfRandomNumber

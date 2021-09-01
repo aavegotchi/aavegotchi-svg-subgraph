@@ -161,18 +161,6 @@ export function handleBuyPortals(event: BuyPortals): void {}
 
 export function handleXingyun(event: Xingyun): void {}
 
-export function handlePurchaseItemsWithGhst(
-  event: PurchaseItemsWithGhst
-): void {}
-
-export function handlePurchaseItemsWithVouchers(
-  event: PurchaseItemsWithVouchers
-): void {}
-
-export function handlePurchaseTransferItemsWithGhst(
-  event: PurchaseTransferItemsWithGhst
-): void {}
-
 export function handleOpenPortals(event: OpenPortals): void {}
 
 export function handlePortalOpened(event: PortalOpened): void {}
