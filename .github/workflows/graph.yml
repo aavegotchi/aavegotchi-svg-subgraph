@@ -3,8 +3,6 @@ name: Deploy Graph
 on:
   push:
     branches: feat/ghActionDeployment
-  pull_request:
-    branches: feat/ghActionDeployment
 
 jobs:
   deploy:
