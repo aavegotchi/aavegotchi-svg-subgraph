@@ -4,7 +4,7 @@ on:
   push:
     branches: feat/ghActionDeployment
   pull_request:
-    branches: main
+    branches: feat/ghActionDeployment
 
 jobs:
   deploy:
