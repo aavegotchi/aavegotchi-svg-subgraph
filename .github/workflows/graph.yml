@@ -2,7 +2,7 @@ name: Deploy Graph
 
 on:
   push:
-    branches: feat/ghActionDeployment
+    branches: main
 
 jobs:
   deploy:
@@ -23,5 +23,5 @@ jobs:
         with:
           graph_access_token: ${{secrets.GRAPH_ACCESS_TOKEN}}
           graph_subgraph_name: "aavegotchi-svg"
-          graph_account: "froid1911"
+          graph_account: "aavegotchi"
           graph_config_file: "subgraph.yaml"
