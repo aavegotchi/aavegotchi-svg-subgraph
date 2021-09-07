@@ -6,6 +6,8 @@ You can query for current, but also for the past.
 
 Examples can be found here: [SVG Docs](https://docs.aavegotchi.com/subgraphs/svg-subgraph)
 
+If you miss something or found a bug please feel free to create an issue.
+
 ## Development
 
 If you never worked with the graph before. We recommend to take some time to understand the core concepts of the graph. A good entry is their [TheGraph Docs](https://thegraph.com/docs/developer/quick-start).
