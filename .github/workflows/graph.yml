@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: composite
+      - uses: actions/checkout@v1
       - name: Install node
         uses: actions/setup-node@v1
         with:
