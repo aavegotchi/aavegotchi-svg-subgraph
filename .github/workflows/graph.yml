@@ -34,7 +34,7 @@ jobs:
       - name: Checkout Stakesquid Offchain Subgraph Repo
         uses: actions/checkout@master
         with:
-          repository: git@github.com:StakeSquid/offchain-subgraph.git
+          repository: StakeSquid/offchain-subgraph.git
           ssh-key: ${{secrets.SSH_PRIVATE_KEY}}
           path: "./offchain-subgraph"
           clean: false
