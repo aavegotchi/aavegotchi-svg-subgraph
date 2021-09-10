@@ -28,11 +28,12 @@ jobs:
           yarn global add @graphprotocol/graph-cli
           echo "$(yarn global bin)" >> $GITHUB_PATH
         shell: bash
-      - name: Deploy to TheGraph
-        run: export deploymentId=`graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ | grep -oP 'Qm[1-9A-HJ-NP-Za-km-z]{44}'`
-        shell: bash
       - name: Sync with Stakesquid
+        uses: actions/checkout@v1
+        with:
+          ssh-key: ${{secrets.SSH_PRIVATE_KEY}}
         run: |
+          export deploymentId=`graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ | grep -oP 'Qm[1-9A-HJ-NP-Za-km-z]{44}'`
           echo $deploymentId
           git clone git@github.com:StakeSquid/offchain-subgraph.git
           cd offchain-subgraph
