@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ssh-key: ${{secrets.SSH_PRIVATE_KEY}}
       - name: Install node
         uses: actions/setup-node@v1
         with:
@@ -31,6 +33,7 @@ jobs:
         shell: bash
       - name: Sync with Stakesquid
         run: |
+          echo $deploymentId
           git clone git@github.com:StakeSquid/offchain-subgraph.git
           cd offchain-subgraph
           if [[ `less ./offchain-subgraphs.txt` != *"$deploymentId"* ]]; then
