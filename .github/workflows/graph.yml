@@ -32,9 +32,9 @@ jobs:
           echo $deploymentId
         shell: bash
       - name: Checkout Stakesquid Offchain Subgraph Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
-          repo: git@github.com:StakeSquid/offchain-subgraph.git
+          repository: git@github.com:StakeSquid/offchain-subgraph.git
           ssh-key: ${{secrets.SSH_PRIVATE_KEY}}
           path: "./offchain-subgraph"
           clean: false
