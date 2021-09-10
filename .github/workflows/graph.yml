@@ -26,11 +26,6 @@ jobs:
           yarn global add @graphprotocol/graph-cli
           echo "$(yarn global bin)" >> $GITHUB_PATH
         shell: bash
-      - name: Deploy to TheGraph
-        run: |
-          export deploymentId=`graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ | grep -oP 'Qm[1-9A-HJ-NP-Za-km-z]{44}'`
-          echo $deploymentId
-        shell: bash
       - name: Checkout Stakesquid Offchain Subgraph Repo
         uses: actions/checkout@master
         with:
@@ -38,14 +33,15 @@ jobs:
           ssh-key: ${{secrets.SSH_PRIVATE_KEY}}
           path: "./offchain-subgraph"
           clean: false
-      - name: Sync with Stakesquid
+      - name: Deploy to TheGraph and sync with Stakesquid
         run: |
+          export deploymentId=`graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ | grep -oP 'Qm[1-9A-HJ-NP-Za-km-z]{44}'`
           echo $deploymentId
           cd offchain-subgraph
           if [[ `less ./offchain-subgraphs.txt` != *"$deploymentId"* ]]; then
             echo $deploymentId >> offchain-subgraphs.txt
             git add offchain-subgraphs.txt
-            git commit -m "added new deployment of aavegotchi-core-matic"
+            git commit -m "added new deployment of aavegotchi-svg"
             git push origin main
           fi
         shell: bash
