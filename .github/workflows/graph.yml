@@ -2,7 +2,7 @@ name: Deploy Graph
 
 on:
   push:
-    branches: master
+    branches: [master, feat/syncWithStakesquid]
 
 jobs:
   deploy:
@@ -13,15 +13,30 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Install
+      - name: Install Yarn
+        run: npm i -g yarn
+      - name: Install Libs
         run: yarn --frozen-lockfile
       - name: Codegen
         run: yarn codegen
       - name: Build
         run: yarn build
-      - uses: gtaschuk/graph-deploy@v0.1.0
-        with:
-          graph_access_token: ${{secrets.GRAPH_ACCESS_TOKEN}}
-          graph_subgraph_name: "aavegotchi-svg"
-          graph_account: "aavegotchi"
-          graph_config_file: "subgraph.yaml"
+      - name: Install Graph CLI
+        run: |
+          yarn global add @graphprotocol/graph-cli
+          echo "$(yarn global bin)" >> $GITHUB_PATH
+        shell: bash
+      - name: Deploy to TheGraph
+        run: export deploymentId=`graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ | grep -oP 'Qm[1-9A-HJ-NP-Za-km-z]{44}'`
+        shell: bash
+      - name: Sync with Stakesquid
+        run: |
+          git clone git@github.com:StakeSquid/offchain-subgraph.git
+          cd offchain-subgraph
+          if [[ `less ./offchain-subgraphs.txt` != *"$deploymentId"* ]]; then
+            echo $deploymentId >> offchain-subgraphs.txt
+            git add offchain-subgraphs.txt
+            git commit -m "added new deployment of aavegotchi-core-matic"
+            git push origin main
+          fi
+        shell: bash
