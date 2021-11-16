@@ -1,4 +1,4 @@
-import { BigInt, log } from "@graphprotocol/graph-ts"
+import { BigInt, ethereum, log, store } from "@graphprotocol/graph-ts"
 import {
   Contract,
   ClaimAavegotchi,
@@ -67,10 +67,13 @@ import {
   WearableSlotPositionsSet,
   MintPortals
 } from "../generated/Contract/Contract"
-import { updateSvg } from "./helper"
+import { Stats } from "../generated/schema";
+import { BLOCK_SIDEVIEWS_ACTIVATED } from "./constants";
+import { updateStats, updateSvg } from "./helper"
 
 export function handleClaimAavegotchi(event: ClaimAavegotchi): void {
   updateSvg(event.params._tokenId);
+  updateStats(event.params._tokenId);
 }
 
 export function handleLockAavegotchi(event: LockAavegotchi): void {}
@@ -146,7 +149,6 @@ export function handleERC721ListingAdd(event: ERC721ListingAdd): void {}
 
 export function handleEquipWearables(event: EquipWearables): void {
   updateSvg(event.params._tokenId);
-
 }
 
 export function handleTransferToParent(event: TransferToParent): void {}
@@ -232,3 +234,17 @@ export function handleWearableSlotPositionsSet(
 ): void {}
 
 export function handleMintPortals(event: MintPortals): void {}
+
+export function handleBlock(block: ethereum.Block): void {
+  if(block.number != BLOCK_SIDEVIEWS_ACTIVATED) {
+    return;
+  }
+
+  // update side views
+  let stats = Stats.load("0");
+  let gotchiIds = stats.gotchiIds;
+  for(let i=0; i<gotchiIds.length; i++) {
+    updateSvg(gotchiIds[i]);
+  }
+  
+}

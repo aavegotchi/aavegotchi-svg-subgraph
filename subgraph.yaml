@@ -24,4 +24,6 @@ dataSources:
           handler: handleEquipWearables
         - event: ClaimAavegotchi(indexed uint256)
           handler: handleClaimAavegotchi
+      blockHandlers:
+        - handler: handleBlock
       file: ./src/mapping.ts
