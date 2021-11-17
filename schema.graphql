@@ -6,7 +6,7 @@ type Aavegotchi @entity {
   back: String
 }
 
-type Stats @entity {
+type Stat @entity {
   id: ID!
   gotchiIds: [BigInt!]!
 }

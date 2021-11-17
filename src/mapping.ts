@@ -67,12 +67,17 @@ import {
   WearableSlotPositionsSet,
   MintPortals
 } from "../generated/Contract/Contract"
-import { Stats } from "../generated/schema";
+import { Stat } from "../generated/schema";
 import { BLOCK_SIDEVIEWS_ACTIVATED } from "./constants";
-import { updateStats, updateSvg } from "./helper"
+import { updateSideViews, updateStats, updateSvg } from "./helper"
 
 export function handleClaimAavegotchi(event: ClaimAavegotchi): void {
-  updateSvg(event.params._tokenId);
+  if(event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)) {
+    updateSideViews(event.params._tokenId);
+  } else {
+    updateSvg(event.params._tokenId);
+  }
+  
   updateStats(event.params._tokenId);
 }
 
@@ -148,7 +153,11 @@ export function handleERC721ExecutedListing(
 export function handleERC721ListingAdd(event: ERC721ListingAdd): void {}
 
 export function handleEquipWearables(event: EquipWearables): void {
-  updateSvg(event.params._tokenId);
+  if(event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)) {
+    updateSideViews(event.params._tokenId);
+  } else {
+    updateSvg(event.params._tokenId);
+  }
 }
 
 export function handleTransferToParent(event: TransferToParent): void {}
@@ -241,10 +250,11 @@ export function handleBlock(block: ethereum.Block): void {
   }
 
   // update side views
-  let stats = Stats.load("0");
+  let stats = Stat.load("0")!;
   let gotchiIds = stats.gotchiIds;
-  for(let i=0; i<gotchiIds.length; i++) {
-    updateSvg(gotchiIds[i]);
-  }
-  
+  let i=0;
+  while(i < gotchiIds.length) {
+    updateSideViews(gotchiIds[i]);
+    i = i+1;
+  } 
 }

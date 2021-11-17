@@ -5,13 +5,13 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ aavegotchi-svgs-subgraph",
-    "create-local": "graph create --node http://localhost:8020/ aavegotchi-svgs-subgraph",
-    "remove-local": "graph remove --node http://localhost:8020/ aavegotchi-svgs-subgraph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 aavegotchi-svgs-subgraph"
+    "create-local": "graph create --node http://graphnode:8020/ aavegotchi-svgs-subgraph",
+    "remove-local": "graph remove --node http://graphnode:8020/ aavegotchi-svgs-subgraph",
+    "deploy-local": "graph deploy --node http://graphnode:8020/ --ipfs http://graphnode:5001 aavegotchi-svgs-subgraph"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.21.1",
-    "@graphprotocol/graph-ts": "0.20.0",
+    "@graphprotocol/graph-cli": "0.23.2",
+    "@graphprotocol/graph-ts": "0.23.1",
     "apollo-fetch": "^0.7.0"
   }
 }
