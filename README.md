@@ -17,7 +17,6 @@ If you never worked with the graph before. We recommend to take some time to und
 3. If the graph node runs locally you can simply run ```yarn create-local``` which creates the subgraph on the graph node. 
 4. Afterwards you run ```yarn deploy-local``` which deploys the subgraph to the graph nodes and the indexing process starts. This can take up to 24 hours.
 
-
 ## Contact
 
 You can find us at the Aavegotchi Discord
