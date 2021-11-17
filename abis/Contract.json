@@ -5901,5 +5901,19 @@
     ],
     "name": "MintPortals",
     "type": "event"
+  },
+  {
+    "inputs":[
+      {
+        "internalType":"uint256",
+        "name":"_tokenId","type":"uint256"
+      }
+    ],
+    "name":"getAavegotchiSideSvgs",
+    "outputs":[
+      {"internalType":"string[]","name":"ag_","type":"string[]"}
+    ],
+    "stateMutability":"view",
+    "type":"function"
   }
 ]
