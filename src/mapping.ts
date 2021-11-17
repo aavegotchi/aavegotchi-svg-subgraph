@@ -73,12 +73,15 @@ import { updateSideViews, updateStats, updateSvg } from "./helper"
 
 export function handleClaimAavegotchi(event: ClaimAavegotchi): void {
   if(event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)) {
-    updateSideViews(event.params._tokenId);
+    let gotchi = updateSideViews(event.params._tokenId);
+    gotchi.save();
   } else {
-    updateSvg(event.params._tokenId);
+    let gotchi = updateSvg(event.params._tokenId);
+    gotchi.save();
   }
   
-  updateStats(event.params._tokenId);
+  let stats = updateStats(event.params._tokenId);
+  stats.save();
 }
 
 export function handleLockAavegotchi(event: LockAavegotchi): void {}
@@ -154,9 +157,11 @@ export function handleERC721ListingAdd(event: ERC721ListingAdd): void {}
 
 export function handleEquipWearables(event: EquipWearables): void {
   if(event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)) {
-    updateSideViews(event.params._tokenId);
+    let gotchi = updateSideViews(event.params._tokenId);
+    gotchi.save();
   } else {
-    updateSvg(event.params._tokenId);
+    let gotchi = updateSvg(event.params._tokenId);
+    gotchi.save();
   }
 }
 
@@ -254,7 +259,8 @@ export function handleBlock(block: ethereum.Block): void {
   let gotchiIds = stats.gotchiIds;
   let i=0;
   while(i < gotchiIds.length) {
-    updateSideViews(gotchiIds[i]);
+    let gotchi = updateSideViews(gotchiIds[i]);
+    gotchi.save();
     i = i+1;
   } 
 }
