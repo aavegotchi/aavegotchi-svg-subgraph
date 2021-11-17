@@ -2,11 +2,11 @@ import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { Contract } from "../generated/Contract/Contract";
 import { Aavegotchi, Stat } from "../generated/schema";
 
-export function updateSvg(gotchi: BigInt): Aavegotchi {
+export function updateSvg(gotchi: BigInt): Aavegotchi | null {
     let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
     let svg = contract.try_getAavegotchiSvg(gotchi);   
     if(svg.reverted) {
-        return; // just skip
+        return null; // just skip
     }
 
     let gotchiEntity = getOrCreateAavegotchi(gotchi);
@@ -14,12 +14,12 @@ export function updateSvg(gotchi: BigInt): Aavegotchi {
     return gotchiEntity;
 }
 
-export function updateSideViews(gotchi: BigInt): Aavegotchi {
+export function updateSideViews(gotchi: BigInt): Aavegotchi | null {
     let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
     let svgs = contract.try_getAavegotchiSideSvgs(gotchi);   
 
     if(svgs.reverted) {
-        return; // just skip
+        return null; // just skip
     }   
     let gotchiEntity = getOrCreateAavegotchi(gotchi);
     let svgsValue = svgs.value;
@@ -39,7 +39,7 @@ export function getOrCreateAavegotchi(gotchi: BigInt): Aavegotchi {
     return gotchiEntity as Aavegotchi;
 }
 
-export function updateStats(gotchi: BigInt): Stat {
+export function updateStats(gotchi: BigInt): Stat | null {
     let stats = Stat.load("0");
     if(!stats) {
         stats = new Stat("0");
@@ -51,7 +51,7 @@ export function updateStats(gotchi: BigInt): Stat {
     for(let i=0; i<gotchiIds.length; i++) {
         let gotchiId = gotchiIds[i];
         if(gotchiId == gotchi) {
-            return;
+            return null;
         }
     }
 
