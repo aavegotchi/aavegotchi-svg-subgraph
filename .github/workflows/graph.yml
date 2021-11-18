@@ -24,5 +24,4 @@ jobs:
       - name: Deploy to TheGraph Hosted Service
         run: |
           npx graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
-          npx graph deploy --access-token ${{secrets.GRAPH_ACCESS_TOKEN}} aavegotchi/aavegotchi-svg subgraph.yaml --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
         shell: bash
