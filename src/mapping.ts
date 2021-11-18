@@ -67,19 +67,13 @@ import {
   WearableSlotPositionsSet,
   MintPortals
 } from "../generated/Contract/Contract"
-import { Stat } from "../generated/schema";
 import { BLOCK_SIDEVIEWS_ACTIVATED } from "./constants";
-import { updateSideViews, updateStats, updateSvg } from "./helper"
+import { getOrCreateAavegotchi, updateSideViews, updateSvg } from "./helper"
 
 export function handleClaimAavegotchi(event: ClaimAavegotchi): void {
   let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED) ?  updateSideViews(event.params._tokenId) : updateSvg(event.params._tokenId);
   if(gotchi != null) {
     gotchi.save();
-  }
-  
-  let stats = updateStats(event.params._tokenId);
-  if(stats != null) {
-    stats.save();
   }
 }
 
@@ -251,14 +245,10 @@ export function handleBlock(block: ethereum.Block): void {
   }
 
   // update side views
-  let stats = Stat.load("0")!;
-  let gotchiIds = stats.gotchiIds;
-  let i=0;
-  while(i < gotchiIds.length) {
-    let gotchi = updateSideViews(gotchiIds[i]);
+  for(let i=0; i<=25000; i++) {
+    let gotchi = updateSideViews(BigInt.fromI32(i));
     if(gotchi != null) {
       gotchi.save();
     }
-    i = i+1;
   } 
 }

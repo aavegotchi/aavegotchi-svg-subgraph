@@ -5,8 +5,3 @@ type Aavegotchi @entity {
   right: String
   back: String
 }
-
-type Stat @entity {
-  id: ID!
-  gotchiIds: [BigInt!]!
-}

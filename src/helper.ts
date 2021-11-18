@@ -1,6 +1,6 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { Contract } from "../generated/Contract/Contract";
-import { Aavegotchi, Stat } from "../generated/schema";
+import { Aavegotchi } from "../generated/schema";
 
 export function updateSvg(gotchi: BigInt): Aavegotchi | null {
     let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
@@ -37,25 +37,4 @@ export function getOrCreateAavegotchi(gotchi: BigInt): Aavegotchi {
     }
 
     return gotchiEntity as Aavegotchi;
-}
-
-export function updateStats(gotchi: BigInt): Stat | null {
-    let stats = Stat.load("0");
-    if(!stats) {
-        stats = new Stat("0");
-        stats.gotchiIds = new Array<BigInt>();
-    }
-
-    let gotchiIds = stats.gotchiIds;
-
-    for(let i=0; i<gotchiIds.length; i++) {
-        let gotchiId = gotchiIds[i];
-        if(gotchiId == gotchi) {
-            return null;
-        }
-    }
-
-    gotchiIds.push(gotchi);
-    stats.gotchiIds = gotchiIds;
-    return stats;
 }
