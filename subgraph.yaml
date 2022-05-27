@@ -24,6 +24,10 @@ dataSources:
           handler: handleEquipWearables
         - event: ClaimAavegotchi(indexed uint256)
           handler: handleClaimAavegotchi
+        - event: PortalOpened(indexed uint256)
+          handler: handlePortalOpened
+        - event: OpenPortals(uint256[])
+          handler: handleOpenPortals
       blockHandlers:
         - handler: handleBlock
       file: ./src/mapping.ts

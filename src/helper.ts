@@ -1,6 +1,6 @@
-import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts";
 import { Contract } from "../generated/Contract/Contract";
-import { Aavegotchi } from "../generated/schema";
+import { Aavegotchi, Portal } from "../generated/schema";
 
 export function updateSvg(gotchi: BigInt): Aavegotchi | null {
     let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
@@ -37,4 +37,25 @@ export function getOrCreateAavegotchi(gotchi: BigInt): Aavegotchi {
     }
 
     return gotchiEntity as Aavegotchi;
+}
+
+export function getOrCreatePortal(portalId: BigInt): Portal {
+    let id = portalId.toString();
+    let entity = Portal.load(id);
+    if(!entity) {
+        entity = new Portal(id);
+        entity.svgs = [];
+    }
+    return entity;
+}
+
+export function fetchPortalSvgs(id: BigInt, event:ethereum.Event): Array<string> {
+    let contract = Contract.bind(event.address);
+    let svgsData = contract.try_portalAavegotchisSvg(id);
+    if(svgsData.reverted) {
+        return [];
+    }
+
+    let svgs = svgsData.value;
+    return svgs;
 }

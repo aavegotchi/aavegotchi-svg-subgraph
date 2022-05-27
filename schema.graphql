@@ -5,3 +5,8 @@ type Aavegotchi @entity {
   right: String
   back: String
 }
+
+type Portal @entity {
+  id: ID!
+  svgs: [String!]!
+}

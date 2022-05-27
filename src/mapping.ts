@@ -68,7 +68,7 @@ import {
   MintPortals
 } from "../generated/Contract/Contract"
 import { BLOCK_SIDEVIEWS_ACTIVATED } from "./constants";
-import { getOrCreateAavegotchi, updateSideViews, updateSvg } from "./helper"
+import { fetchPortalSvgs, getOrCreateAavegotchi, getOrCreatePortal, updateSideViews, updateSvg } from "./helper"
 
 export function handleClaimAavegotchi(event: ClaimAavegotchi): void {
   let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED) ?  updateSideViews(event.params._tokenId) : updateSvg(event.params._tokenId);
@@ -178,10 +178,6 @@ export function handlePurchaseItemsWithVouchers(
 export function handlePurchaseTransferItemsWithGhst(
   event: PurchaseTransferItemsWithGhst
 ): void {}
-
-export function handleOpenPortals(event: OpenPortals): void {}
-
-export function handlePortalOpened(event: PortalOpened): void {}
 
 export function handleVrfRandomNumber(event: VrfRandomNumber): void {}
 
@@ -311,7 +307,23 @@ export function handleBlock(block: ethereum.Block): void {
       }
     } 
   }
+}
 
-  // update side views
-  
+export function handlePortalOpened(event: PortalOpened): void {
+  let id = event.params.tokenId;
+  let entity = getOrCreatePortal(event.params.tokenId);
+  let svgs = fetchPortalSvgs(id, event);
+  entity.svgs = svgs;
+  entity.save();
+}
+
+export function handleOpenPortals(event: OpenPortals): void {
+  let ids = event.params._tokenIds;
+  for(let i=0; i<ids.length; i++) {
+    let id = ids[i];
+    let entity = getOrCreatePortal(id);
+    let svgs = fetchPortalSvgs(id, event);
+    entity.svgs = svgs;
+    entity.save();
+  }
 }
