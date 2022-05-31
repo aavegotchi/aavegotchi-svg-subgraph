@@ -28,6 +28,6 @@ dataSources:
           handler: handlePortalOpened
         - event: OpenPortals(uint256[])
           handler: handleOpenPortals
-      blockHandlers:
-        - handler: handleBlock
+        - event: AavegotchiInteract(indexed uint256,uint256)
+          handler: handleAavegotchiInteract
       file: ./src/mapping.ts
