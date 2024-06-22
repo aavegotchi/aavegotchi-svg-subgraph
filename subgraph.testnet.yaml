@@ -4,11 +4,11 @@ schema:
 dataSources:
     - kind: ethereum/contract
       name: Contract
-      network: matic
+      network: polygon-amoy
       source:
-          address: "0x86935F11C86623deC8a25696E1C19a8659CbF95d"
+          address: "0xd4275abb81e8D30A42B69A588634570e56D25ada"
           abi: Contract
-          startBlock: 39130899
+          startBlock: 6760900
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.6
