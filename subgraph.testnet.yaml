@@ -6,9 +6,9 @@ dataSources:
       name: Contract
       network: polygon-amoy
       source:
-          address: "0xd4275abb81e8D30A42B69A588634570e56D25ada"
+          address: "0xC80DB01aeDAD5F6E3088c75F60E52f579Cf1D3Cb"
           abi: Contract
-          startBlock: 6760900
+          startBlock: 9668200
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.6
