@@ -40,7 +40,7 @@ jobs:
 
       - name: Deploy to Alchemy
         env:
-          SUBGRAPH_NAME: gotchiverse-${{ steps.extract-network.outputs.NETWORK }}
+          SUBGRAPH_NAME: aavegotchi-svg-${{ steps.extract-network.outputs.NETWORK }}
         run: |
           npx graph deploy ${{ env.SUBGRAPH_NAME }} \
             --deploy-key ${{ secrets.SATSUMA_ACCESS_TOKEN }} \
