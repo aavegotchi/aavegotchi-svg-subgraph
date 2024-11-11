@@ -1,0 +1,29 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: base-sepolia
+    source:
+      address: "0x87C969d083189927049f8fF3747703FB9f7a8AEd"
+      abi: Contract
+      startBlock: 16665803
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ClaimAavegotchi
+        - EquipWearables
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: EquipWearables(indexed uint256,uint16[16],uint16[16])
+          handler: handleEquipWearables
+        - event: ClaimAavegotchi(indexed uint256)
+          handler: handleClaimAavegotchi
+      blockHandlers:
+        - handler: handleBlock
+      file: ./src/mapping.ts
