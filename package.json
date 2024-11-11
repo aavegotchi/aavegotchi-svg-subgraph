@@ -17,6 +17,7 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "0.60.0",
     "@graphprotocol/graph-ts": "0.31.0",
-    "apollo-fetch": "^0.7.0"
+    "apollo-fetch": "^0.7.0",
+    "mustache": "^4.2.0"
   }
 }
