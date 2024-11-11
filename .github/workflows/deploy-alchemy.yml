@@ -44,10 +44,13 @@ jobs:
           AAVEGOTCHI_DIAMOND=$(node -e "console.log(require('./config/$NETWORK.json').contracts.diamond)")
           echo "AAVEGOTCHI_DIAMOND=$AAVEGOTCHI_DIAMOND" >> $GITHUB_OUTPUT
 
+      - name: Replace environment variables
+        run: |
+          sed -i "s/{{AAVEGOTCHI_DIAMOND}}/${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}/g" src/helper.ts
+
       - name: Deploy to Alchemy
         env:
           SUBGRAPH_NAME: aavegotchi-svg-${{ steps.extract-network.outputs.NETWORK }}
-          AAVEGOTCHI_DIAMOND: ${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}
         run: |
           npx graph deploy ${{ env.SUBGRAPH_NAME }} \
             --deploy-key ${{ secrets.SATSUMA_ACCESS_TOKEN }} \
