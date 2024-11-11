@@ -1,9 +1,10 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts";
 import { Contract } from "../generated/Contract/Contract";
 import { Aavegotchi } from "../generated/schema";
+import {AAVEGOTCHI_DIAMOND} from "./constants";
 
 export function updateSvg(gotchi: BigInt): Aavegotchi | null {
-    let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
+    let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND))
     let svg = contract.try_getAavegotchiSvg(gotchi);   
     if(svg.reverted) {
         return null; // just skip
@@ -15,7 +16,7 @@ export function updateSvg(gotchi: BigInt): Aavegotchi | null {
 }
 
 export function updateSideViews(gotchi: BigInt): Aavegotchi | null {
-    let contract = Contract.bind(Address.fromString("0x86935F11C86623deC8a25696E1C19a8659CbF95d"))
+    let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND))
     let svgs = contract.try_getAavegotchiSideSvgs(gotchi);   
 
     if(svgs.reverted) {
