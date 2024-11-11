@@ -1,9 +1,9 @@
-name: Deploy to Base Sepolia
+name: Deploy to Polter
 
 on:
   push:
     tags:
-      - "baseSepolia-*"
+      - "polter-*"
 
 jobs:
   buildAndDeploy:
@@ -24,10 +24,10 @@ jobs:
         run: yarn build:testnet
       - name: Deploy to Satsuma on test
         run: |
-          npx graph deploy aavegotchi-svg-baseSepolia \
+          npx graph deploy aavegotchi-svg-polter \
             --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \
             --node https://subgraphs.alchemy.com/api/subgraphs/deploy \
             --ipfs https://ipfs.satsuma.xyz \
             --version-label ${GITHUB_REF#refs/*/} \
-            subgraph.baseSepolia.yaml
+            subgraph.polter.yaml
         shell: bash

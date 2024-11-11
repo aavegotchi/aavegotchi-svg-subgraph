@@ -1,6 +1,6 @@
 import { BigInt } from "@graphprotocol/graph-ts";
 
 // matic
-export let BLOCK_SIDEVIEWS_ACTIVATED = BigInt.fromI32(16665803);
+export let BLOCK_SIDEVIEWS_ACTIVATED = BigInt.fromI32(4273);
 
-export const AAVEGOTCHI_DIAMOND = "0x87C969d083189927049f8fF3747703FB9f7a8AEd";
+export const AAVEGOTCHI_DIAMOND = "0x1F0eb9099b9c398323dcf2F133dFdAD9dE7cF994";
