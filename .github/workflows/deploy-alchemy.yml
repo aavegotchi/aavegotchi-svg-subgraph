@@ -47,6 +47,7 @@ jobs:
       - name: Deploy to Alchemy
         env:
           SUBGRAPH_NAME: aavegotchi-svg-${{ steps.extract-network.outputs.NETWORK }}
+          AAVEGOTCHI_DIAMOND: ${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}
         run: |
           npx graph deploy ${{ env.SUBGRAPH_NAME }} \
             --deploy-key ${{ secrets.SATSUMA_ACCESS_TOKEN }} \
