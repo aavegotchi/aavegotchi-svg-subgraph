@@ -5,13 +5,17 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ aavegotchi-svgs-subgraph",
+    "prepare:polygon": "mustache config/polygon.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:baseSepolia": "mustache config/baseSepolia.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:polter": "mustache config/polter.json subgraph.template.yaml > subgraph.yaml",
     "create-local": "graph create --node http://localhost:8020/ aavegotchi-svgs-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ aavegotchi-svgs-subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 aavegotchi-svgs-subgraph"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.23.2",
-    "@graphprotocol/graph-ts": "0.23.1",
-    "apollo-fetch": "^0.7.0"
+    "@graphprotocol/graph-cli": "0.59.0",
+    "@graphprotocol/graph-ts": "0.31.0",
+    "apollo-fetch": "^0.7.0",
+    "mustache": "^4.2.0"
   }
 }
