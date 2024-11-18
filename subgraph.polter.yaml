@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: geist-polter
     source:
-      address: "0x8045C27B29569eA6AcF39BF7B139f31c00b56467"
+      address: "0xD66C6C61D5a535eD69E3769582895daec28a4651"
       abi: Contract
       startBlock: 4273
     mapping:
@@ -24,6 +24,6 @@ dataSources:
           handler: handleEquipWearables
         - event: ClaimAavegotchi(indexed uint256)
           handler: handleClaimAavegotchi
-      blockHandlers:
-        - handler: handleBlock
-      file: ./src/mapping.ts
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mapping_polter.ts
