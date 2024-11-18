@@ -22,8 +22,6 @@ dataSources:
       eventHandlers:
         - event: EquipWearables(indexed uint256,uint16[16],uint16[16])
           handler: handleEquipWearables
-        - event: ClaimAavegotchi(indexed uint256)
-          handler: handleClaimAavegotchi
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
       file: ./src/mapping_polter.ts
