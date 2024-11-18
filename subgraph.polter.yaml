@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: geist-polter
     source:
-      address: "0x1F0eb9099b9c398323dcf2F133dFdAD9dE7cF994"
+      address: "0x8045C27B29569eA6AcF39BF7B139f31c00b56467"
       abi: Contract
       startBlock: 4273
     mapping:
