@@ -41,9 +41,11 @@ export function handleTransfer(event: Transfer): void {
 
   if (gotchiInfo.value.status == BigInt.fromI32(3)) {
     log.info("mapping gotchi", [token.toString()]);
-    let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
-      ? updateSideViews(event.params._tokenId)
-      : updateSvg(event.params._tokenId);
+    let gotchi = updateSvg(event.params._tokenId);
+
+    //event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
+    //  ? updateSideViews(event.params._tokenId)
+    // : updateSvg(event.params._tokenId);
     if (gotchi != null) {
       gotchi.save();
     }
