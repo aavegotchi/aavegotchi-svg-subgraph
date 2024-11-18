@@ -1,6 +1,6 @@
 type Aavegotchi @entity {
   id: ID!
-  svg: String!
+  svg: String
   left: String
   right: String
   back: String
