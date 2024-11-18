@@ -1,4 +1,4 @@
-import { Address, BigInt } from "@graphprotocol/graph-ts";
+import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 import {
   Contract,
   EquipWearables,
@@ -28,16 +28,19 @@ export function handleTransfer(event: Transfer): void {
     gotchi.right != null &&
     gotchi.back != null
   ) {
+    log.info("already mapped", [token.toString()]);
     return;
   }
 
   let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND));
   let gotchiInfo = contract.try_getAavegotchi(token);
   if (gotchiInfo.reverted) {
+    log.info("reverted", [token.toString()]);
     return;
   }
 
   if (gotchiInfo.value.status == BigInt.fromI32(3)) {
+    log.info("mapping gotchi", [token.toString()]);
     let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
       ? updateSideViews(event.params._tokenId)
       : updateSvg(event.params._tokenId);
