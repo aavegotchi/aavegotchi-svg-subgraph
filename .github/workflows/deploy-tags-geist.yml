@@ -3,7 +3,7 @@ name: Deploy to Polter
 on:
   push:
     tags:
-      - "polter-*"
+      - "geist-*"
 
 jobs:
   buildAndDeploy:
