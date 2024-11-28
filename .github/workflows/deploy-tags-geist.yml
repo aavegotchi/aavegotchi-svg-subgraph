@@ -1,0 +1,33 @@
+name: Deploy to Polter
+
+on:
+  push:
+    tags:
+      - "polter-*"
+
+jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: Install Yarn
+        run: npm i -g yarn
+      - name: Install Libs
+        run: yarn --frozen-lockfile
+      - name: Codegen
+        run: yarn codegen:testnet
+      - name: Build
+        run: yarn build:testnet
+      - name: Deploy to Satsuma on test
+        run: |
+          npx graph deploy aavegotchi-svg-geist \
+            --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \
+            --node https://subgraphs.alchemy.com/api/subgraphs/deploy \
+            --ipfs https://ipfs.satsuma.xyz \
+            --version-label ${GITHUB_REF#refs/*/} \
+            subgraph.geist.yaml
+        shell: bash

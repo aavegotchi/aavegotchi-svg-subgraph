@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: geist-polter
+    source:
+      address: "0x6Acc828BbbC6874de40Ca20bfeA7Cd2a2DA8DA8c"
+      abi: Contract
+      startBlock: 4273
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ClaimAavegotchi
+        - EquipWearables
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: EquipWearables(indexed uint256,uint16[16],uint16[16])
+          handler: handleEquipWearables
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mapping_polter.ts
