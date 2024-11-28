@@ -4,7 +4,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Contract
-    network: geist-polter
+    network: geist-mainnet
     source:
       address: "0x6Acc828BbbC6874de40Ca20bfeA7Cd2a2DA8DA8c"
       abi: Contract
