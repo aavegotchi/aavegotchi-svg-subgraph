@@ -19,10 +19,10 @@ jobs:
       - name: Install Libs
         run: yarn --frozen-lockfile
       - name: Codegen
-        run: yarn codegen:testnet
+        run: yarn codegen:geist
       - name: Build
-        run: yarn build:testnet
-      - name: Deploy to Satsuma on test
+        run: yarn build:geist
+      - name: Deploy to Satsuma on Geist
         run: |
           npx graph deploy aavegotchi-svg-geist \
             --deploy-key ${{secrets.SATSUMA_ACCESS_TOKEN}} \

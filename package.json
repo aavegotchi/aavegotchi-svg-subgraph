@@ -8,6 +8,8 @@
     "codegen:baseSepolia": "graph codegen subgraph.baseSepolia.yaml",
     "build:testnet": "graph build subgraph.testnet.yaml",
     "build:baseSepolia": "graph build subgraph.baseSepolia.yaml",
+    "codegen:geist": "graph codegen subgraph.geist.yaml",
+    "build:geist": "graph build subgraph.geist.yaml",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ aavegotchi-svgs-subgraph",
     "create-local": "graph create --node http://localhost:8020/ aavegotchi-svgs-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ aavegotchi-svgs-subgraph",
