@@ -45,6 +45,11 @@ jobs:
           AAVEGOTCHI_DIAMOND=$(node -e "console.log(require('./config/$NETWORK.json').contracts.diamond)")
           echo "AAVEGOTCHI_DIAMOND=$AAVEGOTCHI_DIAMOND" >> $GITHUB_OUTPUT
 
+      - name: Generate Constants
+        run: |
+          NETWORK=${{ steps.extract-network.outputs.NETWORK }}
+          npx ts-node scripts/generate-constants.ts $NETWORK
+
       - name: Replace environment variables
         run: |
           sed -i "s/{{AAVEGOTCHI_DIAMOND}}/${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}/g" src/helper.ts
