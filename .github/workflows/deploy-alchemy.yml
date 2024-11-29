@@ -35,9 +35,6 @@ jobs:
       - name: Codegen
         run: yarn codegen
 
-      - name: Build
-        run: yarn build
-
       - name: Export Vars
         id: export-vars
         run: |
@@ -53,6 +50,9 @@ jobs:
       - name: Replace environment variables
         run: |
           sed -i "s/{{AAVEGOTCHI_DIAMOND}}/${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}/g" src/helper.ts
+
+      - name: Build
+        run: yarn build
 
       - name: Deploy to Alchemy
         env:
