@@ -49,7 +49,7 @@ jobs:
 
       - name: Replace environment variables
         run: |
-          sed -i "s/{{AAVEGOTCHI_DIAMOND}}/${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}/g" src/helper.ts
+          sed -i "s/process.env.AAVEGOTCHI_DIAMOND/${{ steps.export-vars.outputs.AAVEGOTCHI_DIAMOND }}/g" src/helper.ts
 
       - name: Build
         run: yarn build
