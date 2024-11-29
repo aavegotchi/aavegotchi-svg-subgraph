@@ -1,3 +1,8 @@
+features:
+  - grafting
+graft:
+  base: QmeWcqPd2QvWiLsNWRZsiYxwqqBRszTHfsSTXusWf2Z8bA # Subgraph ID of base subgraph
+  block: 64874170 # Block number
 specVersion: 0.0.2
 schema:
     file: ./schema.graphql

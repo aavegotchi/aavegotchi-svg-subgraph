@@ -39,6 +39,7 @@ jobs:
         run: yarn build
 
       - name: Export Vars
+        id: export-vars
         run: |
           NETWORK=${{ steps.extract-network.outputs.NETWORK }}
           AAVEGOTCHI_DIAMOND=$(node -e "console.log(require('./config/$NETWORK.json').contracts.diamond)")

@@ -5,7 +5,7 @@ import {
   Transfer,
 } from "../generated/Contract/Contract";
 import {
-  AAVEGOTCHI_BRIDGE_VAULT,
+  AAVEGOTCHI_BRIDGE_VAULT_MATIC,
   BLOCK_SIDEVIEWS_ACTIVATED,
 } from "./constants";
 import { updateSideViews, updateSvg } from "./helper";
@@ -121,7 +121,7 @@ export function handleBlock(block: ethereum.Block): void {
 }
 
 export function handleTransfer(event: Transfer): void {
-  if (event.params._from == Address.fromString(AAVEGOTCHI_BRIDGE_VAULT)) {
+  if (event.params._from == Address.fromString(AAVEGOTCHI_BRIDGE_VAULT_MATIC)) {
     //  - if from is bridge vault, update svg because the equipped wearables may have changed
     let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
       ? updateSideViews(event.params._tokenId)
