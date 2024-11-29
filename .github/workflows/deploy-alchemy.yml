@@ -39,7 +39,7 @@ jobs:
         id: export-vars
         run: |
           NETWORK=${{ steps.extract-network.outputs.NETWORK }}
-          AAVEGOTCHI_DIAMOND=$(node -e "console.log(require('./config/$NETWORK.json').contracts.diamond)")
+          AAVEGOTCHI_DIAMOND=$(node -e "console.log(require('./config/$NETWORK.json').address)")
           echo "AAVEGOTCHI_DIAMOND=$AAVEGOTCHI_DIAMOND" >> $GITHUB_OUTPUT
 
       - name: Generate Constants
