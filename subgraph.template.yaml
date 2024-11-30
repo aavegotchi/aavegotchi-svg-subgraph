@@ -29,6 +29,8 @@ dataSources:
                 handler: handleEquipWearables
               - event: ClaimAavegotchi(indexed uint256)
                 handler: handleClaimAavegotchi
+          - event: Transfer(indexed address,indexed address,indexed uint256)
+            handler: handleTransfer
           blockHandlers:
               - handler: handleBlock
           file: ./src/mapping.ts
