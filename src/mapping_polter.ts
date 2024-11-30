@@ -19,35 +19,41 @@ export function handleEquipWearables(event: EquipWearables): void {
 export function handleTransfer(event: Transfer): void {
   let token = event.params._tokenId;
 
-  let gotchi = getOrCreateAavegotchi(token);
-
   // already mapped
+  // if (
+  //   gotchi.svg != null &&
+  //   gotchi.left != null &&
+  //   gotchi.right != null &&
+  //   gotchi.back != null
+  // ) {
+  //   log.info("already mapped", [token.toString()]);
+  //   return;
+  // }
+
+  //minting from bridge, always map
   if (
-    gotchi.svg != null &&
-    gotchi.left != null &&
-    gotchi.right != null &&
-    gotchi.back != null
+    event.params._from ==
+    Address.fromString("0x0000000000000000000000000000000000000000")
   ) {
-    log.info("already mapped", [token.toString()]);
-    return;
-  }
+    log.info("mapping minted gotchi", [token.toString()]);
 
-  let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND));
-  let gotchiInfo = contract.try_getAavegotchi(token);
-  if (gotchiInfo.reverted) {
-    log.info("reverted", [token.toString()]);
-    return;
-  }
+    let contract = Contract.bind(Address.fromString(AAVEGOTCHI_DIAMOND));
+    let gotchiInfo = contract.try_getAavegotchi(token);
+    if (gotchiInfo.reverted) {
+      log.info("reverted", [token.toString()]);
+      return;
+    }
 
-  if (gotchiInfo.value.status == BigInt.fromI32(3)) {
-    log.info("mapping gotchi", [token.toString()]);
-    let gotchi = updateSvg(event.params._tokenId);
+    if (gotchiInfo.value.status == BigInt.fromI32(3)) {
+      log.info("mapping gotchi", [token.toString()]);
+      let gotchi = updateSvg(event.params._tokenId);
 
-    //event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
-    //  ? updateSideViews(event.params._tokenId)
-    // : updateSvg(event.params._tokenId);
-    if (gotchi != null) {
-      gotchi.save();
+      //event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
+      //  ? updateSideViews(event.params._tokenId)
+      // : updateSvg(event.params._tokenId);
+      if (gotchi != null) {
+        gotchi.save();
+      }
     }
   }
 }
