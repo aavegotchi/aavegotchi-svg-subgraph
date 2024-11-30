@@ -1,4 +1,4 @@
-import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts";
+import { Address, BigInt, ethereum, log } from "@graphprotocol/graph-ts";
 import {
   ClaimAavegotchi,
   EquipWearables,
@@ -122,11 +122,16 @@ export function handleBlock(block: ethereum.Block): void {
 
 export function handleTransfer(event: Transfer): void {
   if (event.params._from == Address.fromString(AAVEGOTCHI_BRIDGE_VAULT_MATIC)) {
+    log.info("Transfer from bridge vault for gotchi {}", [
+      event.params._tokenId.toString(),
+    ]);
+
     //  - if from is bridge vault, update svg because the equipped wearables may have changed
     let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
       ? updateSideViews(event.params._tokenId)
       : updateSvg(event.params._tokenId);
     if (gotchi != null) {
+      log.info("saving gotchi {}", [event.params._tokenId.toString()]);
       gotchi.save();
     }
   }
