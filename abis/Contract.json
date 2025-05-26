@@ -5903,17 +5903,63 @@
     "type": "event"
   },
   {
-    "inputs":[
+    "inputs": [
       {
-        "internalType":"uint256",
-        "name":"_tokenId","type":"uint256"
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
       }
     ],
-    "name":"getAavegotchiSideSvgs",
-    "outputs":[
-      {"internalType":"string[]","name":"ag_","type":"string[]"}
+    "name": "getAavegotchiSideSvgs",
+    "outputs": [
+      { "internalType": "string[]", "name": "ag_", "type": "string[]" }
     ],
-    "stateMutability":"view",
-    "type":"function"
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "gotchiId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdAtBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "historicalPrices",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timesTraded",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "activeListing",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct AavegotchiBridgeFacet.AavegotchiHistoricalRecord",
+        "name": "data",
+        "type": "tuple"
+      }
+    ],
+    "name": "AavegotchiHistory",
+    "type": "event"
   }
 ]

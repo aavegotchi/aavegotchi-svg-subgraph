@@ -8,7 +8,7 @@
     "build:testnet": "graph build subgraph.testnet.yaml",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ aavegotchi-svgs-subgraph",
     "prepare:polygon": "mustache config/matic.json subgraph.template.yaml > subgraph.yaml",
-    "prepare:baseSepolia": "mustache config/baseSepolia.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:baseSepolia": "mustache config/baseSepolia.json subgraph.sepolia.yaml > subgraph.yaml",
     "prepare:matic": "mustache config/matic.json subgraph.template.yaml > subgraph.yaml",
     "prepare:polter": "mustache config/polter.json subgraph.template.yaml > subgraph.yaml",
     "create-local": "graph create --node http://localhost:8020/ aavegotchi-svgs-subgraph",

@@ -1,5 +1,6 @@
 import { Address, BigInt, ethereum, log } from "@graphprotocol/graph-ts";
 import {
+  AavegotchiHistory,
   ClaimAavegotchi,
   EquipWearables,
   Transfer,
@@ -134,5 +135,18 @@ export function handleTransfer(event: Transfer): void {
       log.info("saving gotchi {}", [event.params._tokenId.toString()]);
       gotchi.save();
     }
+  }
+}
+
+// this is used to update metadata for gotchis migrated from matic
+export function handleAavegotchiHistory(event: AavegotchiHistory): void {
+  const data = event.params.data;
+  const tokenId = data.gotchiId;
+
+  let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
+    ? updateSideViews(tokenId)
+    : updateSvg(tokenId);
+  if (gotchi != null) {
+    gotchi.save();
   }
 }

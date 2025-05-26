@@ -3,20 +3,20 @@
 # graft:
 #   base: QmeWcqPd2QvWiLsNWRZsiYxwqqBRszTHfsSTXusWf2Z8bA # Subgraph ID of base subgraph
 #   block: 64874170 # Block number
-specVersion: 0.0.4
+specVersion: 0.0.2
 schema:
     file: ./schema.graphql
 dataSources:
     - kind: ethereum/contract
       name: Contract
-      network: "base-sepolia"
+      network: "{{network}}"
       source:
-          address: "0x86e527A5863975d0141514D20248aD17B6BF92D0"
+          address: "{{address}}"
           abi: Contract
-          startBlock: 24921013
+          startBlock: {{startBlock}}
       mapping:
           kind: ethereum/events
-          apiVersion: 0.0.6
+          apiVersion: 0.0.5
           language: wasm/assemblyscript
           entities:
               - ClaimAavegotchi
