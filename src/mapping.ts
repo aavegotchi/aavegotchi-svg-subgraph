@@ -146,6 +146,7 @@ export function handleAavegotchiHistory(event: AavegotchiHistory): void {
   let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
     ? updateSideViews(tokenId)
     : updateSvg(tokenId);
+
   if (gotchi != null) {
     gotchi.save();
   }
