@@ -3,6 +3,7 @@ import {
   AavegotchiHistory,
   ClaimAavegotchi,
   EquipWearables,
+  ResyncAavegotchis,
   Transfer,
 } from "../generated/Contract/Contract";
 import {
@@ -147,6 +148,15 @@ export function handleAavegotchiHistory(event: AavegotchiHistory): void {
     ? updateSideViews(tokenId)
     : updateSvg(tokenId);
 
+  if (gotchi != null) {
+    gotchi.save();
+  }
+}
+
+export function handleResyncAavegotchis(event: ResyncAavegotchis): void {
+  let gotchi = event.block.number.ge(BLOCK_SIDEVIEWS_ACTIVATED)
+    ? updateSideViews(event.params._tokenId)
+    : updateSvg(event.params._tokenId);
   if (gotchi != null) {
     gotchi.save();
   }

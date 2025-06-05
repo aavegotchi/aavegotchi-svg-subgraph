@@ -3,7 +3,7 @@
 # graft:
 #   base: QmeWcqPd2QvWiLsNWRZsiYxwqqBRszTHfsSTXusWf2Z8bA # Subgraph ID of base subgraph
 #   block: 64874170 # Block number
-specVersion: 0.0.4
+specVersion: 0.0.2
 schema:
     file: ./schema.graphql
 dataSources:
@@ -16,7 +16,7 @@ dataSources:
           startBlock: 26636383
       mapping:
           kind: ethereum/events
-          apiVersion: 0.0.6
+          apiVersion: 0.0.5
           language: wasm/assemblyscript
           entities:
               - ClaimAavegotchi
