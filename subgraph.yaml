@@ -11,7 +11,7 @@ dataSources:
       name: Contract
       network: "base-sepolia"
       source:
-          address: "0xf28469b81871D924ae70664FEBf5AF626AAe5087"
+          address: "0x03A74B3e2DD81F5E8FFA1Fb96bb81B35cF3ed5d2"
           abi: Contract
           startBlock: 27243836
       mapping:
